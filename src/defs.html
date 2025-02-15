@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Definitions List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 40px;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>SEARS - FAIR Portal</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Term</th>
+                    <th>Definition</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>HTML</td>
+                    <td>HyperText Markup Language, the standard for creating web pages.</td>
+                </tr>
+                <tr>
+                    <td>CSS</td>
+                    <td>Cascading Style Sheets, used to style HTML elements.</td>
+                </tr>
+                <tr>
+                    <td>JavaScript</td>
+                    <td>A programming language that enables interactive web pages.</td>
+                </tr>
+                <tr>
+                    <td>API</td>
+                    <td>Application Programming Interface, a way for applications to communicate.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const table = document.querySelector("table");
+            const headers = table.querySelectorAll("th");
+            const tbody = table.querySelector("tbody");
+
+            headers.forEach((header, index) => {
+                header.addEventListener("click", () => {
+                    const rows = Array.from(tbody.querySelectorAll("tr"));
+                    const ascending = header.dataset.order !== "asc";
+
+                    rows.sort((rowA, rowB) => {
+                        const cellA = rowA.cells[index].textContent.trim();
+                        const cellB = rowB.cells[index].textContent.trim();
+                        return ascending ? cellA.localeCompare(cellB) : cellB.localeCompare(cellA);
+                    });
+
+                    rows.forEach(row => tbody.appendChild(row));
+                    header.dataset.order = ascending ? "asc" : "desc";
+                });
+            });
+        });
+    </script>
+    
+    <footer style="text-align: center; margin-top: 20px; font-size: 14px; color: #666;">
+        &copy; 2025 Iowa State University of Science and Technology, Ames IA 50010. All rights reserved.
+    </footer>
+</body>
+</html>
+
+</html>
